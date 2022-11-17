@@ -1,0 +1,42 @@
+[
+  {
+    "title": "Am I Laughing",
+    "file": "/am-i-laughing.mp3",
+    "imgSrc": "/tate1.jpeg"
+  },
+  {
+    "title": "Bugatti",
+    "file": "/bugatti.mp3",
+    "imgSrc": "/tate2.jpeg"
+  },
+  {
+    "title": "Dumbass",
+    "file": "/dumbass.mp3",
+    "imgSrc": "/tate3.jpg"
+  },
+  {
+    "title": "Haram",
+    "file": "/haraaam.mp3",
+    "imgSrc": "/tate4.jpg"
+  },
+  {
+    "title": "Nobody Cares",
+    "file": "/nobody-cares-what-you-think-you-are-poor-stupid-weak.mp3",
+    "imgSrc": "/tate5.jpg"
+  },
+  {
+    "title": "Youre Gonna Do Shit",
+    "file": "/the-devil-oh-im-gonna-burn-you-youre-gonna-do-shit.mp3",
+    "imgSrc": "/tate6.jpg"
+  },
+  {
+    "title": "Threat",
+    "file": "/threat.mp3",
+    "imgSrc": "/tate7.jpg"
+  },
+  {
+    "title": "Breathe Air",
+    "file": "/breathe-air.mp3",
+    "imgSrc": "/tate8.png"
+  }
+]

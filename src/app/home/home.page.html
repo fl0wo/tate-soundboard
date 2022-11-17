@@ -1,20 +1,41 @@
 <ion-header [translucent]="true">
   <ion-toolbar>
-    <ion-title>
-      Blank
-    </ion-title>
+    <ion-title style="font-family: 'ThiccboiBold', serif;" size="large">Tate Sounds 😎</ion-title>
   </ion-toolbar>
 </ion-header>
 
 <ion-content [fullscreen]="true">
   <ion-header collapse="condense">
     <ion-toolbar>
-      <ion-title size="large">Blank</ion-title>
+      <ion-title style="font-family: 'ThiccboiBold', serif;" size="large">Tate Sounds 😎</ion-title>
     </ion-toolbar>
   </ion-header>
 
-  <div id="container">
-    <strong>Ready to create an app?</strong>
-    <p>Start with Ionic <a target="_blank" rel="noopener noreferrer" href="https://ionicframework.com/docs/components">UI Components</a></p>
+  <div class="cards-list">
+    <img-card *ngFor="let x of sounds"
+              (click)="cacheAndPlay(x)"
+      [audioUrl]="x.src"
+      [imgUrl]="x.imgSrc"
+      [label]="x.title">
+    </img-card>
   </div>
+
 </ion-content>
+<!--
+<img-card
+  [imgUrl]="'https://i.guim.co.uk/img/media/59c1b14b1677cc33e27967cf6b11c8fd99a93761/0_102_1080_648/master/1080.jpg?width=620&quality=85&dpr=1&s=none'"
+  [label]="'Bugatti'">
+</img-card>
+<img-card
+  [imgUrl]="'https://upload.wikimedia.org/wikipedia/commons/f/f1/Andrew_Tate_on_%27Anything_Goes_With_James_English%27_in_2021.jpg'"
+  [label]="'Bugatti'">
+</img-card>
+<img-card
+  [imgUrl]="'https://upload.wikimedia.org/wikipedia/commons/b/b2/Andrew_tate_%28cropped%29.jpg'"
+  [label]="'Bugatti'">
+</img-card>
+<img-card
+  [imgUrl]="'https://m.economictimes.com/thumb/msid-94422013,width-736,height-736,resizemode-4,imgsize-24360/andrew-tate-.jpg'"
+  [label]="'Bugatti'">
+</img-card>
+-->

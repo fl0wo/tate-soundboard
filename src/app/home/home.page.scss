@@ -25,3 +25,21 @@
 #container a {
   text-decoration: none;
 }
+
+.ion-img-parent {
+
+}
+
+ion-img {
+  width: 11rem;
+  height: 11rem;
+  object-fit:cover;
+}
+
+.cards-list {
+  z-index: 0;
+  width: 100%;
+  display: flex;
+  justify-content: space-around;
+  flex-wrap: wrap;
+}
