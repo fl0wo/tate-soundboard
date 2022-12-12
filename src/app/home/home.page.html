@@ -1,0 +1,22 @@
+<ion-header [translucent]="true">
+  <ion-toolbar>
+    <ion-title style="font-family: 'ThiccboiBold', serif;" size="large">Tate Sounds 😎</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content [fullscreen]="true">
+  <ion-header collapse="condense">
+    <ion-toolbar>
+      <ion-title style="font-family: 'ThiccboiBold', serif;" size="large">Tate Sounds 😎</ion-title>
+    </ion-toolbar>
+  </ion-header>
+
+  <div class="cards-list">
+    <img-card *ngFor="let x of sounds"
+              (click)="cacheAndPlay(x)"
+              [audioUrl]="x.src"
+              [imgUrl]="x.imgSrc"
+              [label]="x.title">
+    </img-card>
+  </div>
+</ion-content>

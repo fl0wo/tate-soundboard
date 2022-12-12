@@ -2,7 +2,7 @@ import { CapacitorConfig } from '@capacitor/cli';
 
 const config: CapacitorConfig = {
   appId: 'io.ionic.starter',
-  appName: 'ionic-react-admob',
+  appName: 'tate-soundbar',
   webDir: 'www',
   bundledWebRuntime: false
 };
