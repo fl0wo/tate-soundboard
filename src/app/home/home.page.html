@@ -12,7 +12,9 @@
   </ion-header>
 
   <div class="cards-list">
-    <img-card *ngFor="let x of sounds"
+    <img-card
+      style="padding:1rem"
+      *ngFor="let x of sounds"
               (click)="cacheAndPlay(x)"
               [audioUrl]="x.src"
               [imgUrl]="x.imgSrc"

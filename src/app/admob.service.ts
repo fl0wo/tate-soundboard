@@ -1,85 +1,58 @@
 import { Injectable } from '@angular/core';
-//IMPORT PLATFORM SO WE CAN START ADMOB AS SOON AS IT'S READY.
-import { Platform } from '@ionic/angular';
-//IMPORT WHAT WE NEED FROM ADMOBFREE PLUGIN.
-import { AdMobFree, AdMobFreeBannerConfig, AdMobFreeInterstitialConfig, AdMobFreeRewardVideoConfig } from '@ionic-native/admob-free/ngx';
+import {
+  AdLoadInfo,
+  AdMob,
+  AdMobBannerSize, AdOptions,
+  BannerAdOptions,
+  BannerAdPluginEvents,
+  BannerAdPosition,
+  BannerAdSize, InterstitialAdPluginEvents
+} from "@capacitor-community/admob";
+
 @Injectable({
   providedIn: 'root'
 })
 export class AdmobService {
-//BANNER CONFIG
-  bannerConfig: AdMobFreeBannerConfig = {
-    isTesting: true, // KEEP DURING CODING, REMOVE AT PROD.
-    autoShow: true//,
-//id: "ID GENERATED AT ADMOB ca-app-pub FOR PROD"
-  };
-//INTERSTITIAL CONFIG
-  interstitialConfig: AdMobFreeInterstitialConfig = {
-    isTesting: true, // KEEP DURING CODING, REMOVE AT PROD.
-    autoShow: false,
-//id: "ID GENERATED AT ADMOB ca-app-pub FOR PROD"
-  };
-//REWARD VIDEO CONFIG.
-  RewardVideoConfig: AdMobFreeRewardVideoConfig = {
-    isTesting: true, // KEEP DURING CODING, REMOVE AT PROD.
-    autoShow: false//,
-//id: "ID GENERATED AT ADMOB ca-app-pub FOR PROD"
-  };
-//ADD PLATFORM Y ADMOB AT CONSTRUCTOR.
-  constructor(
-    public platform: Platform,
-    private admobFree: AdMobFree
-  ) {
-//LOAD ADS AT PLATFORM READY PROMISE.
-    platform.ready().then(()=>{
-//BANNER
-      this.admobFree.banner.config(this.bannerConfig);
-//INTERSTITIAL
-      this.admobFree.interstitial.config(this.interstitialConfig);
-      this.admobFree.interstitial.prepare().then(() => {
-        console.log('INTERSTIAL LOADED')
-      }).catch(e =>
-        console.log('PROBLEM LOADING INTERSTITIAL: ', e)
-      );
-//REWARD VIDEO
-      this.admobFree.rewardVideo.config(this.RewardVideoConfig);
-      this.admobFree.rewardVideo.prepare().then(() => {
-        console.log('REWARD VIDEO LOADED')
-      }).catch(e =>
-        console.log('PROBLEM LOADING REWARDVIDEO: ', e)
-      );
+
+  private TOP_BANNER = 'ca-app-pub-7119119689258159/8540791887'
+
+  init(){
+    return AdMob.initialize({
+      initializeForTesting: true,
+      requestTrackingAuthorization: true
     });
   }
-  ShowBanner() {
-    console.log('ShowBanner called')
-//CHECK AND SHOW BANNER
-    this.admobFree.banner.prepare().then(() => {
-      console.log('BANNER LOADED')
-    }).catch(e =>
-      console.log('PROBLEM LOADING BANNER: ', e)
-    );
-  }
-  ShowInterstitial() {
-//CHECK AND SHOW INTERSTITIAL
-    this.admobFree.interstitial.isReady().then(() => {
-//AT .ISREADY SHOW
-      this.admobFree.interstitial.show().then(() => {
-        console.log('INTERSTITIAL LOADED')
-      })
-        .catch(e => console.log('PROBLEM LOADING REWARD VIDEO: ', e)  );
-    })
-      .catch(e => console.log('PROBLEM LOADING REWARD VIDEO: ', e)  );
+
+  banner() {
+    AdMob.addListener(BannerAdPluginEvents.Loaded, () => {
+      // Subscribe Banner Event Listener
+    });
+
+    AdMob.addListener(BannerAdPluginEvents.SizeChanged, (size: AdMobBannerSize) => {
+      // Subscribe Change Banner Size
+    });
+
+    const options: BannerAdOptions = {
+      adId: this.TOP_BANNER,
+      adSize: BannerAdSize.BANNER,
+      position: BannerAdPosition.BOTTOM_CENTER,
+      margin: 0,
+      // npa: true
+    };
+    return AdMob.showBanner(options);
   }
 
-  ShowRewardVideo() {
-//CHECK AND SHOW REWARDVIDEO
-    this.admobFree.rewardVideo.isReady().then(() => {
-//AT .ISREADY SHOW
-      this.admobFree.rewardVideo.show().then(() => {
-        console.log('BANNER LOADED')
-      })
-        .catch(e => console.log('PROBLEM LOADING REWARD VIDEO: ', e)  );
-    })
-      .catch(e => console.log('PROBLEM LOADING REWARD VIDEO: ', e)  );
+  async interstitial() {
+    AdMob.addListener(InterstitialAdPluginEvents.Loaded, (info: AdLoadInfo) => {
+      // Subscribe prepared interstitial
+    });
+
+    const options: AdOptions = {
+      adId: this.TOP_BANNER,
+      // isTesting: true
+      // npa: true
+    };
+    await AdMob.prepareInterstitial(options);
+    await AdMob.showInterstitial();
   }
 }

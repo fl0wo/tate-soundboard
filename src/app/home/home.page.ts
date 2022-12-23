@@ -17,16 +17,10 @@ export interface SoundS3 {
 export class HomePage implements OnInit {
 
   ngOnInit(): void {
-    this.admobService.ShowBanner();
-  }
-
-  //FUNCTION FOR INTERSTITIAL
-  Interstitial(){
-    this.admobService.ShowInterstitial();
-  }
-//FUNCTION FOR VIDEOREWARD
-  Reward(){
-    this.admobService.ShowRewardVideo();
+    this.admobService.init()
+      .then(()=>{
+        this.admobService.banner()
+      })
   }
 
   /* EDIT THESE */

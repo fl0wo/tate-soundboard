@@ -1,5 +1,5 @@
 import {Injectable, NgZone} from '@angular/core';
-import { Media, MediaObject } from '@ionic-native/media/ngx';
+import { Media } from '@ionic-native/media/ngx';
 import {Platform} from "@ionic/angular";
 
 @Injectable()
